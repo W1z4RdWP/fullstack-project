@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All posts</title>
+    <style>
+        .posts-list {
+            width: 500px;
+            height: 500px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="posts-list">
+        {% for post in posts %}
+            <p>
+                <a href="/blog/{{post.id}}/post/">
+                    {{ post.id }}. {{ post.title }}
+                </a> 
+                <a href="/blog/update_post/{{post.id}}/"><button>Edit</button></a>
+                <a href="/blog/delete_post/{{post.id}}/"><button>Delete</button></a>
+            </p>
+        {% endfor %}
+    </div>
+    <div class="create-post">
+        <form action="/blog/create_post/" method="post">
+            {% csrf_token %}
+            <label for="post_title">
+                Название поста
+            </label>
+            <input type="text" name="post_title" placeholder="Введите название поста..." />
+            <button type="submit">Создать</button>
+        </form>
+    </div>
+</body>
+</html>
