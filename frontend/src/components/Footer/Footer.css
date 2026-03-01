@@ -1,39 +1,46 @@
-.footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 100%;
-
-    position: fixed;    
+.footer {
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-
+    height: 60px; /* Фиксированная высота вместо 100% */
+    background-color: #f8f9fa; /* Добавьте фон для видимости */
+    border-top: 1px solid #dee2e6;
+    z-index: 1000;
 }
 
-.footer-bottom{
+.footer-bottom {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center; /* Вертикальное центрирование */
     height: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Центрирование содержимого */
+    padding: 0 20px;
+}
 
-    position: fixed;  
-    bottom: 0;  
-    left: 0;  
-    right: 0;
-    /* height: 50px;   */
+h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+p {
+    margin: 0;
+    opacity: 0.8;
 }
 
 button {
-    padding: 5px;
-    font-size: 0.7rem;
+    padding: 8px 16px; /* Улучшенный padding */
+    font-size: 0.85rem;
     background-color: white;
-    border-radius: 10px;
-    border-width: 0.5px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-button:hover{
+button:hover {
     background-color: gainsboro;
+    transform: translateY(-1px);
 }
-
-
