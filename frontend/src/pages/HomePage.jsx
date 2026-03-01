@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchPostData } from './../api/api';
+import { fetchAllPostsData } from './../api/api';
 import Post from '../components/Post/Post';
 
 
@@ -13,8 +13,8 @@ const HomePage = () => {
     setLoading(true); // Включаем загрузку
     setError(null); // Сбрасываем ошибку
     try {
-        console.log('Запуск fetchPostData...');
-        const posts = await fetchPostData();
+        console.log('Запуск fetchAllPostsData...');
+        const posts = await fetchAllPostsData();
         console.log('Получены данные: ', posts);
         console.log('тип данных: ', typeof(posts));
         console.log('Длина: ', posts?.length);

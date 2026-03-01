@@ -4,6 +4,7 @@ import Layout from './components/Layout/Layout';
 import Page from './components/Page/Page';
 import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
+import PostPage from './pages/PostPage';
 
 function App() {
 
@@ -16,6 +17,7 @@ return (
         <Route path='/' element={<HomePage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/post/:id' element={<PostPage />} />
       </Route>
       <Route path='*' element={<h2>Маршрут не найден</h2>}/>
     </Routes>

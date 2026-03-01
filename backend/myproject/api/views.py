@@ -15,6 +15,17 @@ def get_all_posts(request: Request) -> Response:
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
+
+@api_view(["GET"])
+def get_post(request: Request, post_id: int) -> Response:
+    try:
+        post = Post.objects.get(id=post_id)
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
+    except Post.DoesNotExist:
+        return Response({"error": "Пост не найден"}, status=status.HTTP_404_NOT_FOUND)
+    
+
 def register_user(request: HttpRequest) -> HttpResponse:
     headers = {'My-SecretCode': 12345}
     return HttpResponse("<h1>Register user</h1>", status=200, headers=headers)

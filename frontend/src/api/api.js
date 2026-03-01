@@ -18,6 +18,11 @@ function request(URI) {
 };
 
 
-export function fetchPostData(){
+export function fetchAllPostsData(){
     return request("/get_all_posts/")
+}
+
+
+export function fetchOnePostData(postId){
+    return request(`/get_post/${postId}`)
 }
