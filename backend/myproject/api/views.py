@@ -32,7 +32,7 @@ def register_user(request: HttpRequest) -> HttpResponse:
 
 
 
-@api_view(["GET", "POST"])
+@api_view(["POST"])
 def create_post(request: Request) -> Response:
     """CREATE"""
     if request.method == 'POST':
@@ -43,3 +43,14 @@ def create_post(request: Request) -> Response:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response({"status": "Only POST method is allowed"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@api_view(["DELETE"])
+def delete_post(request: Request, post_id: int) -> Response:
+    """DELETE"""
+    # serializer = PostSerializer(data=request.data)
+    post = Post.objects.get(id=post_id)
+    post_title = post.title
+    post.delete()
+    return Response({"status": f"Post {post_title} have been removed!"}, status=status.HTTP_200_OK)
+        

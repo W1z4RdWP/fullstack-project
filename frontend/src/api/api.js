@@ -1,20 +1,25 @@
 const API_ROOT = "/api"
 const BASE_URL = "http://127.0.0.1:8000"
 
-function request(URI) {
+async function request(URI, options={}) {
     const fullUrl = BASE_URL + API_ROOT + URI;
-    const response = fetch(fullUrl)
-        .then((resp) => {
-            if (!resp.ok) {
-                throw new Error("Error occured in custom request method while fetching data");
-            }
-            return resp.json();
-        })
-        .catch((err) => {
-            console.error(err);
-            throw(err);
-        })
-    return response;
+
+    const config = {
+        method: options.method || 'GET',
+        credentials: 'include',
+        headers: {
+            'X-CSRFToken': getCSRFToken(),
+            ...options.headers,
+        },
+        ...(options.body && { body: options.body }),
+    };
+
+    const response = await fetch(fullUrl, config);
+    if (!response.ok){
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.status || `HTTP ${response.status}`);
+    }
+    return response.json();
 };
 
 
@@ -66,5 +71,11 @@ export async function createPost(formData){
             }
             return data;
         });
-
 }
+
+export function deletePost(postId){
+    return request(`/delete_post/${postId}/`, {
+        method: 'DELETE',
+    });
+}
+
