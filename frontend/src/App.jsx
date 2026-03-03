@@ -5,6 +5,7 @@ import Page from './components/Page/Page';
 import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import PostPage from './pages/PostPage';
+import CreatePostPage from './pages/CreatePostPage';
 
 function App() {
 
@@ -18,6 +19,7 @@ return (
         <Route path='/about' element={<AboutPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/post/:id' element={<PostPage />} />
+        <Route path='/create_post' element={<CreatePostPage />} />
       </Route>
       <Route path='*' element={<h2>Маршрут не найден</h2>}/>
     </Routes>

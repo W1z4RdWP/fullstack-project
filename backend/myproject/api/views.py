@@ -36,8 +36,10 @@ def register_user(request: HttpRequest) -> HttpResponse:
 def create_post(request: Request) -> Response:
     """CREATE"""
     if request.method == 'POST':
-        serializer = PostSerializer(request.data)
-        post = serializer.save()
-        return Response({"status": "Post Created!", "pk": post.id}, status=status.HTTP_201_CREATED)
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            post = serializer.save()
+            return Response({"status": "Post created!", "pk": post.id}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
-        return Response({"status": "This was GET REQUEST"})
+        return Response({"status": "Only POST method is allowed"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
