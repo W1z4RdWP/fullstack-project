@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { fetchOnePostData } from "../api/api";
 import Post from "../components/Post/Post";
 import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
 
 import './PostPage.css';
 
@@ -34,7 +38,8 @@ const PostPage = () => {
     };
 
     useEffect(() => {
-    getPostData();
+        library.add(faArrowLeft);
+        getPostData();
     }, []);
 
     if (loading) return <p>Загрузка...</p>;
@@ -46,7 +51,9 @@ const PostPage = () => {
     return (
         <>
             <div className="post-page">
-                <Link to='/' style={{position: 'absolute', left: 75, top: 0}}><button>&lt;-</button></Link>
+                <Link to='/' style={{position: 'absolute', left: 75, top: 0}}><button>
+                    <FontAwesomeIcon icon="arrow-left" />
+                </button></Link>
                 <h2>{data.title}</h2>
                 <p>{data.content}</p>
             </div>
