@@ -13,12 +13,7 @@ const HomePage = () => {
     setLoading(true); // Включаем загрузку
     setError(null); // Сбрасываем ошибку
     try {
-        console.log('Запуск fetchAllPostsData...');
         const posts = await fetchAllPostsData();
-        console.log('Получены данные: ', posts);
-        console.log('тип данных: ', typeof(posts));
-        console.log('Длина: ', posts?.length);
-        console.log('Загружаю данные: ', ...posts);
         setData(posts || []);
     } catch (error) {
         console.error('Ошибка загрузки данных Post: ', error);

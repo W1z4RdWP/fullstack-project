@@ -53,4 +53,23 @@ def delete_post(request: Request, post_id: int) -> Response:
     post_title = post.title
     post.delete()
     return Response({"status": f"Post {post_title} have been removed!"}, status=status.HTTP_200_OK)
-        
+
+
+@api_view(["PATCH"])
+def edit_post(request: Request, post_id: int) -> Response:
+    """PATCH"""
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return Response(
+            {"error": "Page not found"},
+            status=status.HTTP_404_NOT_FOUND
+        )
+    
+    serializer = PostSerializer(post, data=request.data, partial=True)
+    
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

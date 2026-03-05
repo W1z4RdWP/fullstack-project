@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { fetchOnePostData } from "../api/api";
-import Post from "../components/Post/Post";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -21,12 +20,7 @@ const PostPage = () => {
     setLoading(true); // Включаем загрузку
     setError(null); // Сбрасываем ошибку
     try {
-        console.log('Запуск fetchOnePostData...');
         const post = await fetchOnePostData(id);
-        console.log('Получены данные: ', post);
-        console.log('тип данных: ', typeof(post));
-        console.log('Длина: ', post?.length);
-        // console.log('Загружаю данные: ', ...post);
         setData(post || null);
     } catch (error) {
         console.error('Ошибка загрузки данных Post: ', error);

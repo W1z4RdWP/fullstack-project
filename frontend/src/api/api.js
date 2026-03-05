@@ -79,3 +79,13 @@ export function deletePost(postId){
     });
 }
 
+
+export function editPost(postId, formData){
+    return request(`/edit_post/${postId}/`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    });
+}

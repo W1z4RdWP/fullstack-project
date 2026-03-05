@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import PostPage from './pages/PostPage';
 import CreatePostPage from './pages/CreatePostPage';
+import EditPostPage from './pages/EditPostPage';
 
 function App() {
 
@@ -20,6 +21,7 @@ return (
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/post/:id' element={<PostPage />} />
         <Route path='/create_post' element={<CreatePostPage />} />
+        <Route path='/edit_post/:id' element={<EditPostPage />} />
       </Route>
       <Route path='*' element={<h2>Маршрут не найден</h2>}/>
     </Routes>
