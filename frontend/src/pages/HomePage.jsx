@@ -33,16 +33,19 @@ const HomePage = () => {
     if (!data) return <p>Нет данных</p>;
 
     return (
-        <>
-            {
-            data.map((post) => {
-                return (
-                <>
-                    <Post post={post}/>
-                </>
-                )
-            }) 
-            }
+        <>                    
+            <div className="main-wrapper" style={{marginBottom: '60px'}}>
+                {
+                data.map((post) => {
+                    return (
+                    <>
+                            <Post post={post}/>
+                    </>
+                    )
+                }) 
+                }
+            </div>
+
         </>
     )
 }
