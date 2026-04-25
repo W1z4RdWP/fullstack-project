@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from rest_framework import status
 
 from blog.models import Post
-from .serializers import PostSerializer
+from .serializers import PostSerializer, UserSerializer
 
 
 @api_view(["GET"])
@@ -26,9 +26,16 @@ def get_post(request: Request, post_id: int) -> Response:
         return Response({"error": "Пост не найден"}, status=status.HTTP_404_NOT_FOUND)
     
 
+@api_view(["POST"])
 def register_user(request: HttpRequest) -> HttpResponse:
-    headers = {'My-SecretCode': 12345}
-    return HttpResponse("<h1>Register user</h1>", status=200, headers=headers)
+    if request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({"status": "User created!", "pk": user.id}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"status": "Only POST Method is allowed"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 

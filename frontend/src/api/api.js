@@ -89,3 +89,30 @@ export function editPost(postId, formData){
         body: JSON.stringify(formData),
     });
 }
+
+
+
+export async function registerUser(formData){
+
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken(),
+        },
+        body: JSON.stringify(formData),
+    };
+
+    return fetch(`${BASE_URL}${API_ROOT}/register/`, config)
+        .then(async (response) => {
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                console.log("Backend errors: ", data);
+                const err = new Error(data.error || `HTTP ${response.status}`);
+                err.errors = data.errors;
+                throw err; 
+            }
+            return data;
+        });
+}

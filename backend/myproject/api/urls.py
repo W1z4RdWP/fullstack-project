@@ -5,10 +5,12 @@ from . import views as api_views
 app_name = 'api'
 
 urlpatterns = [
-    path('register/', api_views.register_user, name='register_user'),
     path('create_post/', api_views.create_post, name='create_post'),
     path('get_all_posts/', api_views.get_all_posts, name='get_all_posts'),
     path('get_post/<int:post_id>/', api_views.get_post, name='get_post'),
     path('delete_post/<int:post_id>/', api_views.delete_post, name='delete_post'),
-    path('edit_post/<int:post_id>/', api_views.edit_post, name='edit_post')
+    path('edit_post/<int:post_id>/', api_views.edit_post, name='edit_post'),
+
+    # Регистрация и авторизация
+    path('register/', api_views.register_user, name='register_user'),
 ]
