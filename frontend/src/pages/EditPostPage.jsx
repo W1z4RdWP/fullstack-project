@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { editPost, fetchOnePostData } from "../api/api";
+import CKEditorInput from "../components/CKEditorInput/CKEditorInput";
 
 const EditPostPage = () => {
     const { id } = useParams();
@@ -53,7 +54,7 @@ const EditPostPage = () => {
                 <label htmlFor="title">Заголовок</label><br />
                 <input type="text" value={newPostTitle} onChange={handleTitleChange} /><br /><br />
                 <label htmlFor="content">Содержание</label><br />
-                <textarea type="text" rows={10} cols={30} value={newPostContent} onChange={handleContentChange} /><br />
+                <CKEditorInput value={newPostContent} onChange={setNewPostContent} />
                 <button type="submit">Применить</button>
             </form>
         </div>
