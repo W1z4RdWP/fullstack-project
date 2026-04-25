@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import DOMPurify from "dompurify";
+
 
 
 import './PostPage.css';
@@ -49,7 +51,8 @@ const PostPage = () => {
                     <FontAwesomeIcon icon="arrow-left" />
                 </button></Link>
                 <h2>{data.title}</h2>
-                <p>{data.content}</p>
+                <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }} />
+
             </div>
         </>
     )

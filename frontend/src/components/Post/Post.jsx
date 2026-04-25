@@ -1,5 +1,6 @@
 import { Link, redirect } from "react-router-dom";
 import { deletePost, editPost } from "../../api/api";
+import DOMPurify from "dompurify";
 
 
 const Post = ({post}) => {
@@ -13,7 +14,7 @@ const Post = ({post}) => {
 
         try {
             await deletePost(post.id);
-            alert("Post have been deleted!");
+            alert("Post has been deleted!");
             window.location.reload();
         } catch (error) {
             alert("Error while deleting post: ", error.message);
@@ -31,7 +32,8 @@ const Post = ({post}) => {
                     </Link>
                     <p><strong>Заголовок:</strong> {post.title}</p>
                     <div className="content" style={{maxWidth: 800, margin: 'auto'}}>
-                    <p><strong>Содержимое:</strong> {post.content}</p>
+                    <p><strong>Содержимое:</strong></p>
+                    <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }} />
                     </div>
                 </div>
             </div>
