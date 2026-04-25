@@ -1,0 +1,13 @@
+.register-form{
+    text-align: center;
+}
+
+.register-form input {
+    width: 30vw;
+    height: 25px;
+}
+
+.register-form button{
+    width: 30vw;
+    background-color: rgb(47, 213, 255);
+}
