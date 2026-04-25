@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { createPost } from "../../api/api";
+
 
 import './CreatePostForm.css';
 import CKEditorInput from "../CKEditorInput/CKEditorInput";
@@ -15,8 +17,9 @@ const CreatePostForm = () => {
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
@@ -34,11 +37,9 @@ const CreatePostForm = () => {
         }
 
         try {
-            const result = createPost(formData);
+            await createPost(formData);
             
-            // Очищаем форму после успеха
-            setTitle('');
-            setContent('');
+            navigate('/')
         } catch (err) {
             setError(err.message || 'Ошибка при создании поста');
         } finally {
