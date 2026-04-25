@@ -6,7 +6,7 @@ const Footer = () => {
             {/* <hr style={{backgroundColor: 'green'}}/> */}
             <div className="footer-bottom">
                 <h3>Footer</h3>
-                <p>created by w1z4rdwp $copy;</p>
+                <p>created by w1z4rdwp ©</p>
                 <button>Privacy Policy</button>
             </div>
         </footer>
