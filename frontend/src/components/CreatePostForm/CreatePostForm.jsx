@@ -253,8 +253,9 @@ const CreatePostForm = () => {
     return (
         <div className="create-post-form">
             <form onSubmit={handleSubmit} autoComplete="off">
-                <label htmlFor="title">Заголовок</label>
+                <label htmlFor="title">Заголовок</label><br />
                 <input 
+                    className="create-post-from__input"
                     type="text" 
                     id="title"
                     value={title}
